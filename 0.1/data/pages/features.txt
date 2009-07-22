@@ -1,0 +1,11 @@
+<h2>Features up in v0.1</h2>
+Some of the features go this way...
+<ul>
+ <li>Easy integration</li>
+ <li>Simple ( or simplest ) interface</li>
+ <li>Links for the sidebar are generated Automatically!!</li>
+ <li>Manage pages in sidebar</li>
+ <li>Add pages other than sidebar pages</li>
+ <li>File based ( no databases )</li>
+ <li>Best suitable for sites with only static content</li>
+</ul>
