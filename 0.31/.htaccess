@@ -1,0 +1,17 @@
+#
+# NanoCMS v0.3 SEF url's mod_rewrite file
+#
+<IfModule mod_php4.c>
+    php_value session.use_trans_sid 0
+</IfModule>
+RewriteEngine On
+#
+# The default rewrite.....nothing much
+#
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^(.*) $1 [L]
+#
+# The main rewrite, put additional rules(if u want) before this...else expect the unexpected..
+#
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?slug=$1 [L]
