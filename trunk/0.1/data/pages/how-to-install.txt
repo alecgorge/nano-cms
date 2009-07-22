@@ -1,0 +1,11 @@
+<h2>How to install NanoCMS</h2>
+<p>
+<ul>
+ <li> To install NanoCMS, just simply copy the files into the  location where you want this to work.</li>
+ <li>Open the page settings.php in notepad or any other text editor</li>
+ <li>Edit the admin login and admin password, which are by default 'admin' and 'demo' respectively.</li>
+ <li>Set the main page of your NanoCMS site which is defaulted to 'index.php' ( recomended )</li>
+ <li>Login into your admin panel by opening the page 'nanoadmin.php'</li>
+ <li>The default 'Home' will exist. You can try editing it or go on to create new pages</li>
+ <li>The basic steps required to create and manage pages and links are given on the <b>Admin Home Page</b>...to help you out</li>
+</p>

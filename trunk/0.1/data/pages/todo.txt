@@ -1,0 +1,9 @@
+<h2>ToDo</h2>
+<ul>
+ <li>Add WYSIWYG Editor</li>
+ <li>Add features to change the website elements like..the website name, meta tags etc...</li>
+ <li>Edit the title of the pages from the interface</li>
+ <li>Web Statistics</li>
+</ul>
+
+ 
