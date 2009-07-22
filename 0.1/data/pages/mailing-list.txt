@@ -1,6 +1,0 @@
-<h2>Subscribe to Mailing List</h2>
-<p>Subscribe to the mailing list and get yourself updated regularly</p>
-<p>
-Mailing list will be added pretty soon....in a couple of days
-You can contact me for further info <a href="index.php?slug=contact-us">here</a>
-</p>

@@ -1,5 +1,0 @@
-<h2>Download NanoCMS</h2>
-<p>Here is the download link for NanoCMS v0.1<br />
-Download <a href="download/download.php?file=nanosite.zip">NanoCMS v0.1</a>
-</p>
-<p>Be Sure to subscribe to <a href='index.php?slug=mailing-list'>mailing list</a> to get updated regularly</p>
