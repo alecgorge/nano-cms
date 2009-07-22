@@ -20,10 +20,11 @@ function nanoadmin_showsettings() {
 		$seourl_stat = $_POST['seourls'];
 		$seourl_stat = $is_modrewrite_available ? $seourl_stat : 0;
 
-		if( $seourl_stat==1 )
-			file_put_contents( NANO_INDEX_LOCATION . '.htaccess', NANO_HTACCESS_FORMAT );
-		else
-			unlink( NANO_INDEX_LOCATION . '.htaccess' );
+		if( $seourl_stat==1 ) {
+			file_put_contents( NANO_INDEX_LOCATION . '.htaccess', NANO_HTACCESS_FORMAT.NANO_INDEX_LOCATION.file_get_contents('.htaccess') );
+		}
+		//
+		//	unlink( NANO_INDEX_LOCATION . '.htaccess' );
 
 		$username = $_POST['username'];
 		$password = $_POST['password'];

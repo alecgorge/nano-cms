@@ -78,21 +78,22 @@ function performEdit() {
 				$renameErr = true;
 			}
 
-			if( !$renameErr ) //edit title only ifrename error has not occured
+			if( !$renameErr ) { //edit title only ifrename error has not occured
 				$EditPageObj->editTitle( stripslashes($_POST[title]) );
+				
+				runTweak( 'file-contents-edit', array( &$_POST[content] ) );
 
+				if( !put2file( $fileName, stripslashes( $_POST[content] ) ) )
+					$editErrMsg[]=lt("Error writing to file",'file-write-error');
+			}
 			$fileName = $newName;
 		}
 
-		runTweak( 'file-contents-edit', array( &$_POST[content] ) );
-
-		if( !put2file( $fileName, stripslashes( $_POST[content] ) ) )
-			$editErrMsg[]=lt("Error writing to file",'file-write-error');
 	}
 
-	if( count($addtErrMsg)!=0 and isset($EditPageObj) ) { //error occured
+	if( count($editErrMsg)!=0 and isset($EditPageObj) ) { //error occured
 		$em = '';
-		foreach( $addtErrMsg as $msg ) $em .= "<li>$msg</li>";
+		foreach( $editErrMsg as $msg ) $em .= "<li>$msg</li>";
 		MsgBox( lt('Errors Occured')." : <ul>$em</ul>", 'redbox' );
 	}
 //	:: Success : No error so proceed to saving pages
@@ -324,7 +325,7 @@ function showpageslist() {
 	$toggStat = 'false';
 
 	if( isset($_GET[addcat]) ) {
-		$newCatName = strtolower( stripslashes($_POST[catname]) );
+		$newCatName = mb_convert_case(stripslashes($_POST[catname]), MB_CASE_LOWER, "UTF-8"); 
 		if( in_array( $newCatName, array_keys($cdt) ) ) {
 			$msg = sprintf( lt( "Cannot add new Links Category : %s already exists",'cat-add-fail-already-exists'), "<b>$newCatName</b>" );
 			MsgBox( $msg );
