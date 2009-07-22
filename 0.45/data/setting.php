@@ -3,7 +3,8 @@
  NanoCMS v0.4 final © 2007-2008 Kalyan Chakravarthy ( www.KalyanChakravarthy.net )
  Default Configuration  - Use "config.php" to edit your configuration.
 */
-
+setlocale(LC_ALL,"en_US.UTF8");
+header('Content-Type: text/html; charset=utf-8');
 error_reporting(E_ERROR);
 
 $NanoCMS = array();
