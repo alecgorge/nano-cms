@@ -1,6 +1,7 @@
 <?php
 /*
  NanoCMS v0.4 final © 2007-2008 Kalyan Chakravarthy ( www.KalyanChakravarthy.net )
+ NanoCMS v0.45 by Alec Gorge (http://ramblingwood.com)
  Default Configuration  - Use "config.php" to edit your configuration.
 */
 setlocale(LC_ALL,"en_US.UTF8");
@@ -11,7 +12,7 @@ $NanoCMS = array();
 $NanoCMS['slug_word'] = "page";
 $NanoCMS['file_extension'] = 'php';
 
-$NanoCMS['pages_info'] = 'pagesdata.txt';
+$NanoCMS['pages_info'] = 'pagesdata.inc';
 $NanoCMS['index_filename'] = 'index.php';
 $NanoCMS['admin_filename'] = 'nanoadmin.php';
 $NanoCMS['setting_filename'] = 'setting.php';
@@ -34,7 +35,7 @@ if( defined('NANO_ADMIN') ) {
 /*
  for custom user configuration
  you can use this to hack nanocms and configure it to work with existing systems
- or make the configs changeabl	e via external sources
+ or make the configs changeable via external sources
 */
 if( isset($NanoCMS_custom_config) )
 	foreach ( (array)$NanoCMS_custom_config as $config=>$value ) 

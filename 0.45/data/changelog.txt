@@ -3,6 +3,11 @@ ______________
 |version 0.45|
 |~~~~~~~~~~~~|
 
+NEW REQUIREMENTS
+-----------------
+PHP 5.2 or better
+Apache (v2 or better perfered, but v1 will work. [others will work if you can convert .htaccess file properly])
+
 FIXES
 -----------------
 fixed bug where htaccess file was deleted. Now it just prepends the mod_rewrite stuff when enabling clean urls and does nothing when they are disabled.
@@ -10,3 +15,8 @@ fixed problems with UTF-8 support. Slugifying for Cyrillic, English-like (Englis
 fixed bug where when page1 and page2 exist and page1 is renamed to page2, page2's content is replaced without warning.
 made it so when clean urls are enabled, normal get varibles are still passed (for example on example.com/nanocms/how-to-install?gallery=10 $_GET['gallery'] will equal 10 not nothing)
 define NANO_SEFURL before tweaks are loaded so that they can access them
+better mod_rewrite detection, and more graceful fallback
+upgraded jQuery to 1.3.2 from 1.2.6
+renamed pagedata.txt to pagedata.inc
+created a default .htaccess file which blocks directory listings, removes magic_quotes_gpc, register globals and hides .inc files from the browser. This means tweaks and NanoCMS core can use .inc files for data storage that will be block from the browser
+changed password hash from MD5 (128-bit) to Whirlpool (512-Bit). The hash of "demo" doesn't show up in Google and it has no known vulerabilities. This is the hash of "demo" (no quotes): c53323891c805766b5465dfb1f511a8fb216d30ad0e3fb690aab6e75ee3819706f92f1f8cca58245ca5672213a42f38a8f8f60c302021ce5497b3087e6b049fe

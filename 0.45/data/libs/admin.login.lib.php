@@ -9,9 +9,9 @@ $admin_pass = getDetails('password');
 
 if( !isset( $_SESSION[ NANO_CMS_ADMIN_LOGGED ] ) ) {
 	if( isset($_POST['user']) ) {
-		if( $_POST['user'] == $admin_user and md5($_POST['pass']) == $admin_pass ) {
+		if( $_POST['user'] == $admin_user and hash('whirlpool',$_POST['pass']) == $admin_pass ) {
 			$_SESSION[ LOGIN_TIME_STAMP ] = $ts = time();
-			$_SESSION[ NANO_CMS_ADMIN_LOGGED ] = md5( $admin_pass . $ts . dirname($_SERVER['REQUEST_URI']) ); //die('done');
+			$_SESSION[ NANO_CMS_ADMIN_LOGGED ] = hash('whirlpool', $admin_pass . $ts . dirname($_SERVER['REQUEST_URI']) ); //die('done');
 			runTweak( 'after-logged-in' );
 			header("location:".$NanoCMS['admin_filename']);
 		} else {
@@ -27,7 +27,7 @@ if( isset( $_GET[ 'logout' ] ) )	{
 }
 
 //the login form
-if( $_SESSION[ NANO_CMS_ADMIN_LOGGED ] != md5( $admin_pass . $_SESSION[ LOGIN_TIME_STAMP ] . dirname($_SERVER['REQUEST_URI']) ) or !isset( $_SESSION[NANO_CMS_ADMIN_LOGGED] ) )
+if( $_SESSION[ NANO_CMS_ADMIN_LOGGED ] != hash('whirlpool', $admin_pass . $_SESSION[ LOGIN_TIME_STAMP ] . dirname($_SERVER['REQUEST_URI']) ) or !isset( $_SESSION[NANO_CMS_ADMIN_LOGGED] ) )
 {
 	session_destroy();
 	runTweak( 'before-login-form' );
