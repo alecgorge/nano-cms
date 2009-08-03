@@ -20,3 +20,5 @@ upgraded jQuery to 1.3.2 from 1.2.6
 renamed pagedata.txt to pagedata.inc
 created a default .htaccess file which blocks directory listings, removes magic_quotes_gpc, register globals and hides .inc files from the browser. This means tweaks and NanoCMS core can use .inc files for data storage that will be block from the browser
 changed password hash from MD5 (128-bit) to Whirlpool (512-Bit). The hash of "demo" doesn't show up in Google and it has no known vulerabilities. This is the hash of "demo" (no quotes): c53323891c805766b5465dfb1f511a8fb216d30ad0e3fb690aab6e75ee3819706f92f1f8cca58245ca5672213a42f38a8f8f60c302021ce5497b3087e6b049fe
+changed error reporting to E_ALL  & ~E_NOTICE & ~E_DEPRECATED
+replaced all the single byte functions with the multibyte functions as mentioned here: http://www.php.net/manual/en/mbstring.overload.php

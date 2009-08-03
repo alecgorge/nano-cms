@@ -163,7 +163,7 @@ function demoExecuteNanoSite() {
 		$catt[$newcatname] = array();
 
 	foreach( $indexTemplateAreas as $k=>$v ) {
-		$indexTemplateAreas[$k] = strtolower($v);
+		$indexTemplateAreas[$k] = mb_strtolower($v);
 	}
 
 	$sett['index-last-modified'] = $indexLastModified;

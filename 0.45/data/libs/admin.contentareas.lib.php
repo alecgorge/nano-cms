@@ -10,7 +10,7 @@ function doAreaEdit() {
 			$areaNamei = stripslashes($_POST["areaName$i"]);
 			$areaContenti = stripslashes($_POST["areaContent$i"]);
 			$areaFilei = areaDataDir( "$areaNamei" );
-			$areaFilei = strtolower($areaFilei);
+			$areaFilei = mb_strtolower($areaFilei);
 			if( !put2file( $areaFilei, $areaContenti ) ) {
 				$errCnt++;
 				$msg = sprintf( lt("Error saving area : <b>%s</b> to file <b>%s</b>",'error-saving-area-to-file'), $areaNamei, $areaFilei );
