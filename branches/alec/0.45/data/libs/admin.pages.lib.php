@@ -53,7 +53,7 @@ function performEdit() {
 		$selectedCats = array();
 
 		foreach( $postVariables as $catKey=>$categoryName ) {
-			if( strpos( $catKey, 'check_' ) !== false ) {
+			if( mb_strpos( $catKey, 'check_' ) !== false ) {
 				$selectedCats[] = $categoryName;
 			}
 		}
@@ -178,7 +178,7 @@ function addpage()
 		$selectedCats = array();
 
 		foreach( $postVariables as $catKey=>$categoryName ) {
-			if( strpos( $catKey, 'check_' ) !== false ) {
+			if( mb_strpos( $catKey, 'check_' ) !== false ) {
 				$selectedCats[] = $categoryName;
 			}
 		}
@@ -205,7 +205,7 @@ function addpage()
 					savepages();
 				$m = lt(sprintf("The page was created successfully. <a href='%s'>Continue Editing</a>","?action=edit&slug=$slug"),'page-create-success'). '<br />';
 				$m .= lt("File Created") ." : ".$newPageFile."<br />";
-				$m .= lt("Content")." : ".substr( strip_tags($content), 0, 100 ).( strlen($content)>100 ? '...' : '' )."<br />";
+				$m .= lt("Content")." : ".mb_substr( strip_tags($content), 0, 100 ).( mb_strlen($content)>100 ? '...' : '' )."<br />";
 
 				MsgBox( $m );
 
@@ -325,7 +325,7 @@ function showpageslist() {
 	$toggStat = 'false';
 
 	if( isset($_GET[addcat]) ) {
-		$newCatName = mb_convert_case(stripslashes($_POST[catname]), MB_CASE_LOWER, "UTF-8"); 
+		$newCatName = mb_strtolower(stripslashes($_POST[catname])); 
 		if( in_array( $newCatName, array_keys($cdt) ) ) {
 			$msg = sprintf( lt( "Cannot add new Links Category : %s already exists",'cat-add-fail-already-exists'), "<b>$newCatName</b>" );
 			MsgBox( $msg );
