@@ -62,14 +62,16 @@ define( 'NANO_TWEAKS_DIR',  $NanoCMS['tweaks_dir'] );
 define( 'NANO_MUSTHAVE_CATS', 'other-pages,sidebar' );
 define( 'NANO_ADMIND_DESIGN_BASE', $NanoCMS['admin_design_base'] );
 define( 'NANO_BASE', $NanoCMS['nanocms_base'] );
-
-define( 'NANO_HTACCESS_FORMAT', "# NanoCMS v0.4 SEF url's mod_rewrite file
-RewriteEngine On
-RewriteBase ".NANO_BASE."
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php?".NANO_SLUGWORD."=$1 [L]
-" );
+define( 'NANO_SEFURL', (bool)getDetails('seourl') );
+define( 'NANO_HTACCESS_FORMAT', "\n# NanoCMS v0.45 SEF url's mod_rewrite file
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase ".NANO_BASE."
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ index.php?".NANO_SLUGWORD."=$1&%{QUERY_STRING}% [L]
+</IfModule>
+# NanoCMS End" );
 
 ////////////////////////////////////////////////////////////////////////////////////////
 //		do not edit anything below this
@@ -168,6 +170,14 @@ function get_links_array( $cat ) {
 	return $dSlugs;
 }
 
+function trimString($input, $string){
+        $input = trim($input);
+        $string = str_replace("\\", "\\\\", $string);
+        $string = str_replace('/', '\\/', $string);
+        $startPattern = "/^($string)+/i";
+        $endPattern = "/($string)+$/i";
+        return trim(preg_replace($endPattern, '', preg_replace($startPattern,'',$input)));
+}
 /* 	Will show links in a category */
 function show_links( $link_cat, $format='', $before='', $after='' )
 {
@@ -178,7 +188,7 @@ function show_links( $link_cat, $format='', $before='', $after='' )
 	$links_html = '';
 	foreach( (array)$linklist as $slug=>$title )
 		$links_html.= sprintf( $format, makeLink( slugUrl($slug),$title ) );
-	echo $links_html = $before.$links_html.$after;
+	echo $links_html = trimString($before.$links_html.$after, str_replace('%s', '', $format));
 }
 
 /* wrapper */
@@ -465,7 +475,6 @@ function registerTweak( $tLocation, $tName ) {
 
 function runTweak( $location, $data=array() ) {
 	global $tweakList, $tweakLocations;
-
 	if( empty($tweakList[ $location ]) ) return;
 	$tweaks = $tweakList[ $location ];
 	if( empty($tweaks) ) return;
@@ -474,6 +483,11 @@ function runTweak( $location, $data=array() ) {
 		if( is_callable( $tFunc ) )
 		call_user_func_array( $tFunc, (array)$data );
 	}
+}
+
+function isTweak ( $location ) {
+	global $tweakList;
+	return (array_key_exists($location, $tweakList) ? true : false);
 }
 
 function registerInterface( $title, $func ) {
@@ -582,5 +596,4 @@ runTweak( 'language-select', array( &$language ) );
 if( !defined( 'NANO_ADMIN' ) and !defined( 'NANO_CUSTOM' ) )
 	nano_set_active_slug();
 
-define( 'NANO_SEFURL', (bool)getDetails('seourl') );
 ?>
