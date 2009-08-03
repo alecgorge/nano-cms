@@ -11,7 +11,12 @@ function nanoadmin_showsettings() {
 	if( function_exists('apache_get_modules') ){
 		if(in_array('mod_rewrite',apache_get_modules()))
 			$is_modrewrite_available = true;
+		else
+			$is_modrewrite_available = false;
 	}
+	else {
+		$is_modrewrite_available = true;
+	]
 
 	if( isset($_POST['save']) ) {
 		runTweak('save-settings');
@@ -32,9 +37,9 @@ function nanoadmin_showsettings() {
 		setDetails('seourl',$seourl_stat);
 		if(!empty($username)) setDetails('username',$username);
 		if(!empty($password)) {
-			setDetails('password',md5($password));
+			setDetails('password',hash('whirlpool',$password));
 			//reset the logged session variable
-			$_SESSION[ NANO_CMS_ADMIN_LOGGED ] = md5( md5($password) . $_SESSION[ LOGIN_TIME_STAMP ] );
+			$_SESSION[ NANO_CMS_ADMIN_LOGGED ] =  hash('whirlpool',$password) . $_SESSION[ LOGIN_TIME_STAMP ] );
 		}
 
 		if( savepages() )
