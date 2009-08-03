@@ -6,7 +6,7 @@
 */
 setlocale(LC_ALL,"en_US.UTF8");
 header('Content-Type: text/html; charset=utf-8');
-error_reporting(E_ERROR);
+error_reporting(E_ALL  & ~E_NOTICE & ~E_DEPRECATED);
 
 $NanoCMS = array();
 $NanoCMS['slug_word'] = "page";

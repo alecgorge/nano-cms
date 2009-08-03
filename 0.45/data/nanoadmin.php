@@ -15,7 +15,6 @@ require_once( "libs/general.lib.php" );
 
 //General functions
 require_once( "libs/template.lang.lib.php" );
-
 //Admin Login Lib
 require_once( "libs/admin.login.lib.php" );
 
