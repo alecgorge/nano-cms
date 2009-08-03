@@ -16,7 +16,7 @@ function nanoadmin_showsettings() {
 	}
 	else {
 		$is_modrewrite_available = true;
-	]
+	}
 
 	if( isset($_POST['save']) ) {
 		runTweak('save-settings');
@@ -39,7 +39,7 @@ function nanoadmin_showsettings() {
 		if(!empty($password)) {
 			setDetails('password',hash('whirlpool',$password));
 			//reset the logged session variable
-			$_SESSION[ NANO_CMS_ADMIN_LOGGED ] =  hash('whirlpool',$password) . $_SESSION[ LOGIN_TIME_STAMP ] );
+			$_SESSION[ NANO_CMS_ADMIN_LOGGED ] =  hash('whirlpool',$password . $_SESSION[ LOGIN_TIME_STAMP ] );
 		}
 
 		if( savepages() )
