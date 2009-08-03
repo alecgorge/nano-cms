@@ -1,0 +1,12 @@
+______________
+|~~~~~~~~~~~~|
+|version 0.45|
+|~~~~~~~~~~~~|
+
+FIXES
+-----------------
+fixed bug where htaccess file was deleted. Now it just prepends the mod_rewrite stuff when enabling clean urls and does nothing when they are disabled.
+fixed problems with UTF-8 support. Slugifying for Cyrillic, English-like (English, Spanish etc) and Greek all works.
+fixed bug where when page1 and page2 exist and page1 is renamed to page2, page2's content is replaced without warning.
+made it so when clean urls are enabled, normal get varibles are still passed (for example on example.com/nanocms/how-to-install?gallery=10 $_GET['gallery'] will equal 10 not nothing)
+define NANO_SEFURL before tweaks are loaded so that they can access them
